@@ -29,8 +29,8 @@ public class Bot : MonoBehaviour
         }
         if (hostile)
         {
-            Plane[] p = GeometryUtility.CalculateFrustumPlanes(Matrix4x4.TRS(transform.position,transform.rotation,transform.localScale));
-            if (Vector3.Distance(transform.position, player.position) <= 15 && GeometryUtility.TestPlanesAABB(p, player.gameObject.GetComponent<MeshRenderer>().bounds))
+
+            if (Vector3.Distance(transform.position, player.position) <= 15 && Vector3.Dot(transform.forward,(player.position-transform.position).normalized)>0.2)
             {
                 agent.destination = player.position;
                 cautious = true;

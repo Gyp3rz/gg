@@ -28,10 +28,13 @@ public class PM : MonoBehaviour
         }
         dir.y = rb.velocity.y;
         rb.velocity = dir;
-        transform.eulerAngles += new Vector3(0, pointer.x, 0);
-        camrot.x -= pointer.y;
-        camrot.x = Mathf.Clamp(camrot.x,-90,90);
-        Camera.main.transform.localRotation=Quaternion.Euler(camrot);
+        if (!Cursor.visible)
+        {
+            transform.eulerAngles += new Vector3(0, pointer.x, 0);
+            camrot.x -= pointer.y;
+            camrot.x = Mathf.Clamp(camrot.x, -90, 90);
+            Camera.main.transform.localRotation = Quaternion.Euler(camrot);
+        }
     }
     public void Move(InputAction.CallbackContext context)
     {
